@@ -63,10 +63,10 @@ const COMMANDS = {
   Or scroll down to use the contact form!`,
   
   resume: `> Downloading resume...
-  
-  [████████████████████] 100%
-  
-  ✓ Resume downloaded successfully!`,
+
+[████████████████████] 100%
+
+✓ Resume downloaded successfully!`,
   
   social: `> Social Links
   
@@ -77,7 +77,7 @@ const COMMANDS = {
 
 export const Terminal = () => {
   const [lines, setLines] = useState<TerminalLine[]>([
-    { type: 'output', content: "Welcome to Rohit's Terminal Portfolio v1.0.0" },
+    { type: 'output', content: "Welcome to Rohit's Terminal v1.0.0" },
     { type: 'output', content: "Type 'help' to see available commands.\n" },
   ]);
   const [currentInput, setCurrentInput] = useState('');
@@ -106,6 +106,30 @@ export const Terminal = () => {
     ];
 
     if (trimmedCmd in COMMANDS) {
+      // Special handling for 'resume' command
+      if (trimmedCmd === 'resume') {
+        // Show animation first
+        newLines.push({ 
+          type: 'output', 
+          content: COMMANDS.resume 
+        });
+
+        setLines(newLines);
+        setCommandHistory([...commandHistory, cmd]);
+        setHistoryIndex(-1);
+
+        // Trigger actual download after a short delay for UX
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = '/resume.pdf'; 
+          link.download = 'Rohit_Karna_Resume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, 500); // 0.5s delay to let animation show
+        return;
+      }
+
       newLines.push({ 
         type: 'output', 
         content: COMMANDS[trimmedCmd as keyof typeof COMMANDS] 

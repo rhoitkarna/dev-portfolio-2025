@@ -1,11 +1,17 @@
 import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
 
-const socialLinks = [
-  { icon: Github, href: 'github.com/rhoitkarna', label: 'GitHub' },
-  { icon: Linkedin, href: 'linkedin.com/in/rohit-karna', label: 'LinkedIn' },
-  { icon: Twitter, href: 'x.com/rhoitkarna', label: 'Twitter' },
-];
+// const socialLinks = [
+//   { icon: Github, href: 'github.com/rhoitkarna', label: 'GitHub' },
+//   { icon: Linkedin, href: 'linkedin.com/in/rohit-karna', label: 'LinkedIn' },
+//   { icon: Twitter, href: 'x.com/rhoitkarna', label: 'Twitter' },
+// ];
 
+
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/rhoitkarna', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/rohit-karna', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/rhoitkarna', label: 'Twitter' },
+];
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
@@ -50,13 +56,16 @@ export const Footer = () => {
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
-                key={social.label}
-                href={social.href}
-                aria-label={social.label}
-                className="p-2 rounded-md hover:bg-muted transition-colors"
-              >
-                <social.icon className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
-              </a>
+  key={social.label}
+  href={social.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={social.label}
+  className="p-2 rounded-md hover:bg-muted transition-colors"
+>
+  <social.icon className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+</a>
+
             ))}
           </div>
         </div>
